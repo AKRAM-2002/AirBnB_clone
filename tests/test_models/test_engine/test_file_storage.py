@@ -15,6 +15,9 @@ class TestFileStorage(unittest.TestCase):
         self.assertIn("BaseModel." + bm.id, models.storage.all().keys())
         self.assertIn(bm, models.storage.all().values())
 
+    def test_FileStorage_instantiation_no_args(self):
+        self.assertEqual(type(FileStorage()), FileStorage)
+
     def test_new_base_model_with_args(self):
         # Test that new() with arguments raises a TypeError
         with self.assertRaises(TypeError):
