@@ -1,5 +1,10 @@
 #!/usr/bin/python3
 
+from models.base_model import BaseModel
 
-class State:
-    pass
+
+class State(BaseModel):
+    """
+    class State that inherits from BaseModel
+    """
+    name =  ""

@@ -32,6 +32,9 @@ class FileStorage:
 
     __file_path = "file.json"
     __objects = {}
+    current_classes = {'BaseModel': BaseModel, 'User': User,
+                           'Amenity': Amenity, 'City': City, 'State': State,
+                           'Place': Place, 'Review': Review}
 
     def all(self):
         """
@@ -49,16 +52,15 @@ class FileStorage:
         """
         Save the objects to json format
         """
-        with open(FileStorage.__file_path, "w", encoding="UTF-8") as f:
-            json.dump(FileStorage.__objects, f)
+        with open(FileStorage.__file_path, 'w') as f:
+            json.dump(
+                {k: v.to_dict() for k, v in FileStorage.__objects.items()}, f)
     
     def reload(self):
         """
         Deserialize the JSON file to __objects only if __file_path exists
         """
-        current_classes = {'BaseModel': BaseModel, 'User': User,
-                           'Amenity': Amenity, 'City': City, 'State': State,
-                           'Place': Place, 'Review': Review}
+        
 
         if not os.path.exists(FileStorage.__file_path):
             return
@@ -70,7 +72,7 @@ class FileStorage:
                 except json.decoder.JSONDecodeError:
                     return
                 for key, value in new_obj_dict.items():
-                    obj = self.class_dict[value['__class__']](**value)
+                    obj = FileStorage.current_classes[value['__class__']](**value)
                     FileStorage.__objects[key] = obj
         except FileNotFoundError:
             pass

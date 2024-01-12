@@ -102,7 +102,14 @@ class HBNBCommand(cmd.Cmd):
             if the class name does not exist print ** class does not exist *** 
 
         """
-        pass 
+        args = arg.split()
+        if not check_class_name(args):
+            return
+        class_name = args[0]
+
+        new_instance = current_classes[class_name]()
+        new_instance.save()
+        print(new_instance.id) 
 
     def do_show(self, arg):
         """
@@ -126,13 +133,23 @@ class HBNBCommand(cmd.Cmd):
         """
         ex: $ destroy BaseModel 1234-1234-1234
             Deletes an instance based on the class name and id (save the change into the JSON file)
-            if the class name is missing, print ** class name missing **
-            if the class name does not exist, print ** class does not exist **
-            if the id is missing, print ** id missing ** 
+            
             if the isntance of the class name doesn't exist for the id, print ** no instance found ** 
             if the instance of the class name exists for the id, delete it from the JSON file and return id of the deleted instance
         """
-        pass
+        args = arg.split()
+        if not check_class_name(args, check_id=True):
+            return 
+        
+        all_instances = storage.all()
+        key = "{}.{}".format(args[0], args[1])
+        req_instance = all_instances.get(key, None)
+        if req_instance is None:
+            print("** no instance found **")
+            return
+        del all_instances[key] 
+        storage.save()
+        
         
     
     def do_all(self, arg):
@@ -166,6 +183,17 @@ class HBNBCommand(cmd.Cmd):
             Update BaseModel 1234-1234-1234 email "example@gmail.com"
             Updates an instance based on the class name and id (save the change into the JSON file)
         """
+        args = args.split()
+        if not check_class_name(args, check_id=True):
+            return 
+        all_instances = storage.all()
+        key = "{}.{}".format(args[0], args[1])
+        req_instance = all_instances.get(key, None)
+        if req_instance is None:
+            print("** no instance found **")
+            return
+        setattr(req_instance, args[2], args[3])
+        storage.save()
 
         pass
 

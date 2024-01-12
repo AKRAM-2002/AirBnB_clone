@@ -23,24 +23,20 @@ class BaseModel:
         """
         Initialize attributes: uuid4, dates when class was created/updated
         """
-        date_format = '%Y-%m-%dT%H:%M:%S.%f'
-        if kwargs:
+        if len(kwargs) > 0:
             for key, value in kwargs.items():
-                if "created_at" == key and isinstance(value, str):
-                    self.created_at = datetime.strptime(kwargs["created_at"],
-                                                        date_format)
-                elif "updated_at" == key and isinstance(value, str):
-                    self.updated_at = datetime.strptime(kwargs["updated_at"],
-                                                        date_format)
-                elif "__class__" == key:
-                    pass
-                else:
-                    setattr(self, key, value)
-        else:
-            self.id = str(uuid4())
-            self.created_at = datetime.now()
-            self.updated_at = datetime.now()
-            models.storage.new(self)
+                if key == '__class__':
+                    continue
+                if key == "created_at" or key == "updated_at":
+                    value = datetime.fromisoformat(value)
+                setattr(self, key, value)
+            return
+
+        self.id = str(uuid4())
+        self.created_at = datetime.now()
+        self.updated_at = datetime.now()
+
+        models.storage.new(self)
 
     def __str__(self):
         return ("[{}]"+ "({})" + "{}").format(self.__class__.__name__,self.id,self.__dict__)
