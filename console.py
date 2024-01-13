@@ -71,7 +71,7 @@ def check_class_name(args, check_id=False):
 class HBNBCommand(cmd.Cmd):
     """
     class HBNBCommand that inherits from cmd.Cmd
-    Defines command interepreter 
+    Defines command interepreter that implement the basic functionalities for creating, showing, destroying, listing, and updating instances in your command interpreter.
     Rules:
         - You can assume arguments are always in the right order
         - Each arguments are separated by a space
@@ -95,19 +95,16 @@ class HBNBCommand(cmd.Cmd):
         """ 
         ex: $ create BaseModel
             if the class exists then create it:
-                Creates a new instance of the BaseModel class.
+                Creates a new instance of the class.
                 save it to JSON file and return id of the new instance
             
-            if the class name is missing print  ** class name missing ***
-            if the class name does not exist print ** class does not exist *** 
-
         """
         args = arg.split()
         if not check_class_name(args):
             return
         class_name = args[0]
 
-        new_instance = current_classes[class_name]()
+        new_instance = current_classes[class_name]() 
         new_instance.save()
         print(new_instance.id) 
 
@@ -177,25 +174,39 @@ class HBNBCommand(cmd.Cmd):
 
 
         
-    def do_update(self, args):
+    def do_update(self, arg):
         """
+            Updates an instance based on the class name and id
         ex: $ update <class name> <id> <attribute name> "<attribute value>"
             Update BaseModel 1234-1234-1234 email "example@gmail.com"
             Updates an instance based on the class name and id (save the change into the JSON file)
         """
-        args = args.split()
+        args = arg.split(maxsplit=3)
+        
+
         if not check_class_name(args, check_id=True):
             return 
         all_instances = storage.all()
         key = "{}.{}".format(args[0], args[1])
         req_instance = all_instances.get(key, None)
+        
         if req_instance is None:
             print("** no instance found **")
             return
+        if len(args) < 3:
+            print("** attribute name missing **")
+            return
+        if len(args) < 4:
+            print("** value missing **")
+            return
+        
+        
+        if args[2] in ["id", "created_at", "updated_at"]:
+            print("** cannot update id, created_at, or updated_at **")
+            return
+
         setattr(req_instance, args[2], args[3])
         storage.save()
-
-        pass
 
     
 

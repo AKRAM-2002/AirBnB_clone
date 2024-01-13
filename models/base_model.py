@@ -4,6 +4,7 @@ from datetime import datetime
 import models
 
 
+
 class BaseModel:
     """
     Base class for all models
@@ -63,6 +64,5 @@ class BaseModel:
         dic["updated_at"] = self.updated_at.isoformat()
         dic["__class__"] = self.__class__.__name__
         return dic
-
 
 
