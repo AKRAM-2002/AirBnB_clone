@@ -5,7 +5,8 @@ Unittests for module User
 
 import unittest
 from models.user import User
-from uuid import uuid4
+from time import sleep
+
 
 class TestUser(unittest.TestCase):
 
@@ -45,6 +46,20 @@ class TestUser(unittest.TestCase):
         instance1 = User()
         instance2 = User()
         self.assertNotEqual(instance1.id, instance2.id)
+
+   
+
+    def test_save_one_user(self):
+        user = User()
+        sleep(0.05)
+        last_update = user.updated_at
+        user.save()
+        self.assertLess(last_update, user.updated_at)
+
+    def test_args_unused(self):
+        usr = User(None)
+        self.assertNotIn(None, usr.__dict__.values())
+
 
 if __name__ == "__main__":
     unittest.main()
