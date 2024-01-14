@@ -1,6 +1,4 @@
 #!/usr/bin/python3
-# cmd module
-# class HBNBCommand(cmd.Cmd):
 """
     This module serves as the entry point for the command interpreter. It introduces the `HBNBCommand` class, a subclass of `cmd.Cmd`. The primary purpose of this module is to provide abstractions for interacting with a versatile storage system (FileStorage / DB). These abstractions facilitate seamless transitions between different storage types without requiring extensive codebase modifications.
 
