@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 
-
 """Defines unittests for console.py.
 """
 
@@ -21,7 +20,6 @@ from models.review import Review
 
 
 class TestConsole(unittest.TestCase):
-
 
     """Base class for testing Console.
     """
@@ -147,7 +145,10 @@ class TestConsole(unittest.TestCase):
                              "To get help on a command, type help <topic>.")
 
 
+
 class TestBaseModel(unittest.TestCase):
+
+
     """Testing `Basemodel `commands.
     """
 
@@ -230,6 +231,8 @@ class TestBaseModel(unittest.TestCase):
 
 
 class TestBaseModelDotNotation(unittest.TestCase):
+
+
     """Testing `Basemodel `commands using dot notation.
     """
 
@@ -417,6 +420,8 @@ class TestUser(unittest.TestCase):
 
 
 class TestUserDotNotation(unittest.TestCase):
+
+
     """Testing the `user` command's dot notation.
     """
 
@@ -519,6 +524,8 @@ class TestUserDotNotation(unittest.TestCase):
 
 
 class TestState(unittest.TestCase):
+
+
     """Testing the `state` commands.
     """
 
@@ -594,6 +601,8 @@ class TestState(unittest.TestCase):
 
 
 class TestStateDotNotation(unittest.TestCase):
+
+
     """Testing the `state` command's dot notation.
     """
 
@@ -696,6 +705,8 @@ class TestStateDotNotation(unittest.TestCase):
 
 
 class TestReview(unittest.TestCase):
+
+
     """Testing the `review` commands.
     """
 
@@ -873,6 +884,8 @@ class TestReviewDotNotation(unittest.TestCase):
 
 
 class TestPlace(unittest.TestCase):
+
+
     """Testing the `place` commands.
     """
 
@@ -948,6 +961,8 @@ class TestPlace(unittest.TestCase):
 
 
 class TestPlaceDotNotation(unittest.TestCase):
+
+
     """Testing the `place` command's dot notation.
     """
 
@@ -1050,6 +1065,8 @@ class TestPlaceDotNotation(unittest.TestCase):
 
 
 class TestAmenity(unittest.TestCase):
+
+
     """Testing the `amenity` commands.
     """
 
@@ -1125,6 +1142,8 @@ class TestAmenity(unittest.TestCase):
 
 
 class TestAmenityDotNotation(unittest.TestCase):
+
+
     """Testing the `amenity` command's dot notation.
     """
 
@@ -1227,6 +1246,8 @@ class TestAmenityDotNotation(unittest.TestCase):
 
 
 class TestCity(unittest.TestCase):
+
+
     """Testing the `city` commands.
     """
 
@@ -1302,6 +1323,8 @@ class TestCity(unittest.TestCase):
 
 
 class TestCityDotNotation(unittest.TestCase):
+
+
     """Testing the `city` command's dot notation.
     """
 
@@ -1401,6 +1424,6 @@ class TestCityDotNotation(unittest.TestCase):
                                  f'City.destroy({cty.id})'))
             self.assertNotIn("City.{}".format(
                 cty.id), storage.all().keys())
-
+            
 if __name__ == '__main__':
     unittest.main()

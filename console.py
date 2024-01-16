@@ -1,6 +1,11 @@
 #!/usr/bin/python3
 """
-    This module serves as the entry point for the command interpreter. It introduces the `HBNBCommand` class, a subclass of `cmd.Cmd`. The primary purpose of this module is to provide abstractions for interacting with a versatile storage system (FileStorage / DB). These abstractions facilitate seamless transitions between different storage types without requiring extensive codebase modifications.
+    This module serves as the entry point for the command interpreter. 
+    It introduces the `HBNBCommand` class, a subclass of `cmd.Cmd`. 
+    The primary purpose of this module is to provide abstractions for interacting with 
+    a versatile storage system (FileStorage / DB). 
+    These abstractions facilitate seamless transitions between different storage types 
+    without requiring extensive codebase modifications.
 
     The functionality of this module enables interactive and non-interactive operations, allowing users to:
         - Create data models
@@ -71,7 +76,8 @@ class HBNBCommand(cmd.Cmd):
     
     """
     class HBNBCommand that inherits from cmd.Cmd
-    Defines command interepreter that implement the basic functionalities for creating, showing, destroying, listing, and updating instances in your command interpreter.
+    Defines command interepreter that implement the basic functionalities for creating, 
+    showing, destroying, listing, and updating instances in your command interpreter.
     Rules:
         - You can assume arguments are always in the right order
         - Each arguments are separated by a space
@@ -111,7 +117,8 @@ class HBNBCommand(cmd.Cmd):
         if not check_class_name(args):
             return
         class_name = args[0]
-        instances_count = sum(1 for instance in storage.all().values() if instance.__class__.__name__ == class_name)
+        instances_count = sum(1 for instance in storage.all()
+                            .values() if instance.__class__.__name__ == class_name)
         print(instances_count)
     
     def do_quit(self, arg):
@@ -166,9 +173,6 @@ class HBNBCommand(cmd.Cmd):
         """
         ex: $ destroy BaseModel 1234-1234-1234
             Deletes an instance based on the class name and id (save the change into the JSON file)
-            
-            if the isntance of the class name doesn't exist for the id, print ** no instance found ** 
-            if the instance of the class name exists for the id, delete it from the JSON file and return id of the deleted instance
         """
         args = arg.split()
         if not check_class_name(args, check_id=True):
