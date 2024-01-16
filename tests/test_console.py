@@ -1,11 +1,13 @@
 #!/usr/bin/python3
+
+
 """Defines unittests for console.py.
 """
+
 from io import StringIO
 import os
 import unittest
 from unittest.mock import patch
-from console import HBNBCommand
 from console import HBNBCommand
 from models import storage
 import json
@@ -19,6 +21,8 @@ from models.review import Review
 
 
 class TestConsole(unittest.TestCase):
+
+
     """Base class for testing Console.
     """
 
@@ -32,9 +36,9 @@ class TestConsole(unittest.TestCase):
             os.remove(storage._FileStorage__file_path)
 
     def test_simple(self):
+
         """Tests basic commands.
         """
-
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd("quit")
             self.assertEqual(f.getvalue(), "")
@@ -328,6 +332,8 @@ class TestBaseModelDotNotation(unittest.TestCase):
 
 
 class TestUser(unittest.TestCase):
+
+
     """Testing the `user` commands.
     """
 
@@ -368,6 +374,7 @@ class TestUser(unittest.TestCase):
             self.assertEqual(f.getvalue().strip(), res)
 
     def test_update_user(self):
+
         """Test update user object.
         """
         with patch('sys.stdout', new=StringIO()) as f:
