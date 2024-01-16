@@ -67,6 +67,8 @@ def check_class_name(args, check_id=False):
 
 
 class HBNBCommand(cmd.Cmd):
+
+    
     """
     class HBNBCommand that inherits from cmd.Cmd
     Defines command interepreter that implement the basic functionalities for creating, showing, destroying, listing, and updating instances in your command interpreter.
@@ -241,14 +243,6 @@ class HBNBCommand(cmd.Cmd):
 
         setattr(req_instance, args[2], args[3])
         storage.save()
-
-    
-        
-
-    
-
-    
-
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
