@@ -66,7 +66,7 @@ def check_class_name(args, check_id=False):
             print("** class doesn't exist **")
             return False
         if check_id and len(args) == 1:
-            print("** id missing **")
+            print("** instance id missing **")
             return False
         return True
 
