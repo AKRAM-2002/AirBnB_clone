@@ -1,16 +1,16 @@
 #!/usr/bin/python3
 """
- Defines the following unit tests for the Review class
+Defines the following unit tests for the Review class
 """
 
 import unittest
 from models.review import Review
 from datetime import datetime
-from time import sleep 
+from time import sleep
+
 
 class TestReview(unittest.TestCase):
 
-    
     def test_create_review(self):
         instance = Review()
         self.assertIsInstance(instance, Review)
@@ -23,7 +23,6 @@ class TestReview(unittest.TestCase):
         self.assertEqual(str, type(instance.place_id))
         self.assertEqual(datetime, type(instance.created_at))
         self.assertEqual(datetime, type(instance.updated_at))
-    
 
     def test_unique_id(self):
         instance1 = Review()
@@ -62,7 +61,7 @@ class TestReview(unittest.TestCase):
     def test_args_unused(self):
         rv = Review(None)
         self.assertNotIn(None, rv.__dict__.values())
-        
+
     def test_to_dict_method(self):
         instance = Review()
         dictionary = instance.to_dict()
