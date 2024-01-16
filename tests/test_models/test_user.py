@@ -33,11 +33,13 @@ class TestUser(unittest.TestCase):
         Test email attribute type
         Test password attribute type
         Test first_name attribute type
+        Test last_name attribute type
         """
         self.assertEqual(str, type(self.user.id))
         self.assertEqual(str, type(self.user.email))
         self.assertEqual(str, type(self.user.password))
         self.assertEqual(str, type(self.user.first_name))
+        self.assertEqual(str, type(self.user.last_name))
     
     def test_unique_id(self):
         """
