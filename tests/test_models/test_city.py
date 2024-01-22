@@ -3,9 +3,11 @@
 """
 Defines the following unit tests for the City class 
 """
+
 import unittest
 from models.city import City
 from time import sleep
+
 
 class TestCity(unittest.TestCase):
 
@@ -14,7 +16,7 @@ class TestCity(unittest.TestCase):
 
     def tearDown(self):
         del self.city
-    
+
     def test_create_city(self):
         instance = self.city
         self.assertIsInstance(instance, City)
@@ -31,7 +33,6 @@ class TestCity(unittest.TestCase):
 
     def test_init_with_attributes(self):
         city = City(id="123", state_id="state123", name="San Francisco")
-
         self.assertEqual(city.id, "123")
         self.assertEqual(city.state_id, "state123")
         self.assertEqual(city.name, "San Francisco")
@@ -49,8 +50,6 @@ class TestCity(unittest.TestCase):
         expected_str = "[City](123){'id': '123', 'state_id': 'state123', 'name': 'San Francisco'}"
         self.assertEqual(city.__str__(), expected_str)
 
-    
-
     def test_to_dict_method(self):
         instance = self.city
         dictionary = instance.to_dict()
@@ -67,5 +66,7 @@ class TestCity(unittest.TestCase):
     def test_args_unused(self):
         ct = City(None)
         self.assertNotIn(None, ct.__dict__.values())
+
+
 if __name__ == '__main__':
     unittest.main()
