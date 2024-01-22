@@ -74,7 +74,7 @@ article .reviews{
 }
 .places article .amenities h2,
 .places article .reviews h2{
-	size: 16px;	
+	font-size: 16px;	
 	border-bottom: 1px solid #DDDDDD;
 }
 .places article .amenities ul,
