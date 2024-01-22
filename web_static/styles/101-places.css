@@ -32,7 +32,7 @@
 .places article h2 {
   font-size: 30px;
   margin-top: 5px;
-  flex: 1;
+  
 }
 
 div.price_by_night {
@@ -46,24 +46,24 @@ div.price_by_night {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex: 1;
 }
 
 .places article .information {
-  height: 100%;
+  height: fit-content;
   border-top: 1px solid #DDDDDD;
   border-bottom: 1px solid #DDDDDD;
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center; /* Add this line to vertically center align */
 }
 
 div.max_guest,
 div.number_rooms,
 div.number_bathrooms {
+  
   line-height: 120px;
   width: 100px;
+  height: fit-content;
   display: flex;
   flex-direction: column;
   background-repeat: no-repeat;
@@ -98,6 +98,7 @@ div.description {
   margin-top: 20px; /* Adjust the top margin as needed */
   width: 100%;
   padding: 0;
+  height: fit-content;
 }
 
 .places article .amenities h2,
